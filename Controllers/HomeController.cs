@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
-namespace template.Controllers
+namespace aspnetcore.mvc.angular2.template.Controllers
 {
     public class HomeController : Controller
     {

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
 
-namespace template
+namespace aspnetcore.mvc.angular2.template
 {
     public class Program
     {

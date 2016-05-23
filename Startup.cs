@@ -8,9 +8,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
-namespace template
+namespace aspnetcore.mvc.angular2.template
+
 {
-    public class Startup
+	public class Startup
     {
         public Startup(IHostingEnvironment env)
         {
