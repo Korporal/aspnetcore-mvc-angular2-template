@@ -237,4 +237,4 @@ _Pvt_Extensions
 # visual studio outputs
 bin/
 obj/
-wwwroot/lib/**
+wwwroot/libs/**
