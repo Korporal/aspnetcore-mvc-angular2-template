@@ -237,4 +237,12 @@ _Pvt_Extensions
 # visual studio outputs
 bin/
 obj/
-wwwroot/libs/**
+
+# buid dependencies
+bower_modules/
+
+# output folder (since this is a template and not a production site)
+wwwroot/css/
+wwwroot/fonts/
+wwwroot/libs/
+wwwroot/app/

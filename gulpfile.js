@@ -9,23 +9,24 @@ const gulp = require('gulp'),
     less = require('gulp-less');
 
 const base = {
-    source:"app",
-    build: "wwwroot",
-    node:'node_modules'
+    source:'app',
+    build: 'wwwroot',
+    node: 'node_modules',
+    bower:'bower_modules'
 }
 
 const paths = {
     source: {
-        css: base.source + '/**/*.less',
-        js: base.source + '/**/*.ts',
+        bower: base.bower,
+
+        app: base.source + '/**/*.ts',
         html: [base.source + '/**/*.html', '!' + base.source + '/index.html'],
         index: base.source+'/index.html'
     },
     build: {
         root: base.build,
         css: base.build + '/css',
-        js: base.build,
-        html: base.build + '/app',
+        fonts: base.build + '/fonts',
         libs: base.build + '/libs'
     },
     libs: {
@@ -36,71 +37,91 @@ const paths = {
     }
 }
 
-
-gulp.task("clean:js", function () { 
+/* CLEANUP */
+gulp.task('clean-app', function () { 
     del(paths.build.js);
 });
-
-gulp.task("clean:css", function () {
-    del(paths.build.css);
+gulp.task('clean-css', function () {
+    del(paths.build.css + '/**.*' );
+});
+gulp.task('clean-fonts', function () {
+    del(paths.build.fonts + '/**.*');
 });
 
-gulp.task("clean", ["clean:js", "clean:css"]);
+gulp.task('clean', ['clean-app', 'clean-css', 'clean-fonts']);
 
-// setup vendors [angular]
-// 
-
-gulp.task("setup-libs", function () {
+/* ASSETS */
+gulp.task('setup-css', function () {
 
     gulp.src([
-        paths.libs.angular + '/bundles/angular2.*.js',
-        paths.libs.angular + '/bundles/angular2-polyfills.js',
-        paths.libs.angular + '/bundles/http.*.js',
-        paths.libs.angular + '/bundles/router.*.js',
-        paths.libs.es6 + '/es6-shim.min.js',
-        paths.libs.angular + '/es6/dev/src/testing/shims_for_IE.js',
-        paths.libs.system + '/dist/*.*',
-        paths.libs.rxjs + '/bundles/Rx.js'
-    ])
-    .pipe(gulp.dest(paths.build.libs));
+            paths.source.bower + '/bootstrap/dist/css/**/*.css'
+        ])
+        .pipe(gulp.dest(paths.build.css));
 
 });
 
-gulp.task("transpile", function () {
+gulp.task('setup-fonts', function () {
+    gulp.src([
+            paths.source.bower + '/bootstrap/dist/fonts/**/*.*',
+            paths.source.bower + '/font-awesome/fonts/**/*.*',
+        ])
+        .pipe(gulp.dest(paths.build.fonts));
+});
+
+gulp.task('assets', ['setup-css', 'setup-fonts']);
+
+
+// DEPENDENCIES [angular]
+
+gulp.task('setup-libs', function () {
+
+    gulp.src([
+            paths.libs.angular + '/bundles/angular2.*.js',
+            paths.libs.angular + '/bundles/angular2-polyfills.js',
+            paths.libs.angular + '/bundles/http.*.js',
+            paths.libs.angular + '/bundles/router.*.js',
+            paths.libs.es6 + '/es6-shim.min.js',
+            paths.libs.angular + '/es6/dev/src/testing/shims_for_IE.js',
+            paths.libs.system + '/dist/*.*',
+            paths.libs.rxjs + '/bundles/Rx.js',
+
+        ])
+        .pipe(gulp.dest(paths.build.libs));
+});
+
+gulp.task('transpile', function () {
 
     var result = gulp.src([
-
-    ])
-        .pipe(sourcemaps())
+            paths.source.app + '/**/*'
+        ])
+        .pipe(sourcemaps.init())
         .pipe(typescript(tsconfig));
-
 
     result.js
         .pipe(sourcemaps.write())
-        .pipe(gulp.dest(paths.build.libraries));
-
+        .pipe(gulp.dest(paths.build.libs));
 });
 
 
 gulp.task('build', ['setup-libs', 'transpile']);
 
-/*
-
-gulp.task("min:js", function () {
-    return gulp.src([paths.js, "!" + paths.minJs], { base: "." })
-        .pipe(concat(paths.concatJsDest))
-        .pipe(uglify())
-        .pipe(gulp.dest("."));
-});
-
-gulp.task("min:css", function () {
-    return gulp.src([paths.css, "!" + paths.minCss])
-        .pipe(concat(paths.concatCssDest))
-        .pipe(cssmin())
-        .pipe(gulp.dest("."));
-});
-gulp.task("min", ["min:js", "min:css"]);
-
-*/
+    /*
+    
+    gulp.task('min:js', function () {
+        return gulp.src([paths.js, '!' + paths.minJs], { base: '.' })
+            .pipe(concat(paths.concatJsDest))
+            .pipe(uglify())
+            .pipe(gulp.dest('.'));
+    });
+    
+    gulp.task('min:css', function () {
+        return gulp.src([paths.css, '!' + paths.minCss])
+            .pipe(concat(paths.concatCssDest))
+            .pipe(cssmin())
+            .pipe(gulp.dest('.'));
+    });
+    gulp.task('min', ['min:js', 'min:css']);
+    
+    */
 
 
