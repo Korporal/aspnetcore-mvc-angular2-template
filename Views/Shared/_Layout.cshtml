@@ -1,19 +1,82 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - template</title>
+    <base href="/">
 
     <environment names="Development">
-        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
-        <link rel="stylesheet" href="~/css/site.css" />
+
+        <link href="/css/bootstrap.css" rel="stylesheet" />
+        <link href="/css/font-awesome.css" rel="stylesheet" />
+
+        <!-- 1. Load libraries -->
+        
+        <script src="libs/angular2-polyfills.js"></script>
+        
+        <script src="libs/system.src.js"></script>
+        <script src="libs/Rx.js"></script>
+        <script src="libs/angular2.dev.js"></script>
+        <script src="libs/browser.js"></script>
+        <script src="libs/router.dev.js"></script>
+        <script src="libs/http.dev.js"></script>
+
+
+        <!--
+        <script src="libs/system-polyfills.js"></script>
+        <script src="node_modules/zone.js/dist/zone.js"></script>
+        <script src="node_modules/reflect-metadata/Reflect.js"></script>
+        <script src="node_modules/rxjs/bundles/Rx.min.js"></script>
+        <script src="node_modules/ng2-bootstrap/bundles/ng2-bootstrap.min.js"></script>
+        -->
+
+        <!-- 2. Configure SystemJS -->
+
+        <script>
+            System.config({
+                packages: {
+                    app: {
+                        format: 'register',
+                        defaultExtension: 'js'
+                    },
+                    paths: {
+                        'rx': 'libs/rx.js',
+                        'angular2': 'libs/angular'
+                    }
+                }
+
+
+            })
+            /*
+            System.config({
+                "baseURL": "/",
+                "map": {
+                    'angular2':'/libs/angular2.dev'
+
+                },
+                packages: {
+                    scripts: {    // <--- right there
+                        format: 'cjs',
+                        defaultExtension: 'js'
+                    }
+                },
+                "paths": {
+                    'angular':'/libs'
+
+                }
+
+            });
+            */
+            System.import('./app/boot.js').then(null, console.error.bind(console));
+            
+        </script>
+
+
     </environment>
+
     <environment names="Staging,Production">
-        <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/css/bootstrap.min.css"
-              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
-              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
-        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+        
     </environment>
 </head>
 <body>
@@ -46,20 +109,12 @@
     </div>
 
     <environment names="Development">
-        <script src="~/lib/jquery/dist/jquery.js"></script>
-        <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
-        <script src="~/js/site.js" asp-append-version="true"></script>
+        
     </environment>
     <environment names="Staging,Production">
-        <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.3.min.js"
-                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
-                asp-fallback-test="window.jQuery">
-        </script>
-        <script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/bootstrap.min.js"
-                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
-                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal">
-        </script>
-        <script src="~/js/site.min.js" asp-append-version="true"></script>
+        <script></script>
+        <script></script>
+        <script></script>
     </environment>
 
     @RenderSection("scripts", required: false)
