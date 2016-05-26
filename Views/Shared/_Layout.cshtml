@@ -6,10 +6,10 @@
     <title>@ViewData["Title"] - template</title>
     <base href="/">
 
-    <environment names="Development">
 
         <link href="/css/bootstrap.css" rel="stylesheet" />
         <link href="/css/font-awesome.css" rel="stylesheet" />
+        <link href="/css/site.css" rel="stylesheet" />
 
         <!-- 1. Load libraries -->
         
@@ -22,10 +22,7 @@
         <script src="libs/router.dev.js"></script>
         <script src="libs/http.dev.js"></script>
 
-
-
         <!-- 2. Configure SystemJS -->
-
         <script>
             System.config({
                 packages: {
@@ -64,16 +61,10 @@
             System.import('./app/boot').then(null, console.error.bind(console));
             
         </script>
-
-
-    </environment>
-
-    <environment names="Staging,Production">
-        
-    </environment>
 </head>
+
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
+    <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -92,24 +83,20 @@
                 </ul>
             </div>
         </div>
-    </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; 2016 - template</p>
-        </footer>
-    </div>
-
-    <environment names="Development">
+    </nav>
+    <div class="container">
+        <div class="row">
+            @RenderBody()
+            <hr />
+            <footer>
+                <p>&copy; 2016 - template</p>
+            </footer>
+        </div>
         
-    </environment>
-    <environment names="Staging,Production">
-        <script></script>
-        <script></script>
-        <script></script>
-    </environment>
+    </div>
 
-    @RenderSection("scripts", required: false)
+    @RenderSection("scripts", required: false) 
 </body>
+
+
 </html>
