@@ -9,10 +9,11 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
 namespace aspnetcore.mvc.angular2.template
+	{
 
-{
 	public class Startup
     {
+
         public Startup(IHostingEnvironment env)
         {
             var builder = new ConfigurationBuilder()
@@ -52,10 +53,11 @@ namespace aspnetcore.mvc.angular2.template
 
             app.UseMvc(routes =>
             {
-                routes.MapRoute(
-                    name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
-            });
+                routes.MapRoute(name: "default", template: "{controller=Home}/{action=Index}/{id?}");
+
+				//this will catch everyting - there should be a better way of handling this.
+				routes.MapRoute("spa-fallback", "{*anything}", new { controller="Home", action="Index"});
+			});
         }
     }
 }
