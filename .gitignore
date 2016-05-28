@@ -245,4 +245,4 @@ bower_modules/
 wwwroot/css/
 wwwroot/fonts/
 wwwroot/libs/
-wwwroot/app/
+wwwroot/app/**/*
