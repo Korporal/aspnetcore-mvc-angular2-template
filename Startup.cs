@@ -9,7 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
 namespace aspnetcore.mvc.angular2.template
-	{
+{
 
 	public class Startup
     {

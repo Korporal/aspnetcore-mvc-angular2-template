@@ -38,6 +38,7 @@ const paths = {
         system: base.node + '/systemjs',
         rxjs: base.node + '/rxjs',
         reactive: base.node + '/@reactivex',
+        //typings: base.node + '/typings'
     }
 }
 
@@ -62,7 +63,9 @@ gulp.task('setup-css', function () {
 
     gulp.src([
             paths.source.bower + '/bootstrap/dist/css/**/*.css',
-            paths.source.bower + '/font-awesome/css/**/*.css'
+            paths.source.bower + '/bootstrap/dist/css/**/*.map',
+            paths.source.bower + '/font-awesome/css/**/*.css',
+            paths.source.bower + '/font-awesome/css/**/*.map'
         ])
         .pipe(gulp.dest(paths.build.css));
 
@@ -108,7 +111,7 @@ gulp.task('setup-reactive', function () {
         .pipe(gulp.dest(paths.build.libs + '/rxjs'));
 });
 
-gulp.task('setup-libs',['setup-angular', 'setup-reactive'])
+gulp.task('setup-libs', ['setup-angular', 'setup-reactive'])
 
 
 gulp.task('transpile', function () {
@@ -117,8 +120,10 @@ gulp.task('transpile', function () {
             paths.libs.angular + '/bundles/typings/angular2/angular2.d.ts',
             paths.libs.angular + '/bundles/typings/angular2/http.d.ts',
             paths.libs.angular + '/bundles/typings/angular2/router.d.ts',
-            paths.libs.base + 'typescript-compiler/lib/lib.es6.d.ts',
-            'node_modules/@reactivex/rxjs/dist/es6/Rx.d.ts',
+            paths.libs.angular + '/typings/browser.d.ts',
+            paths.libs.base + '/typescript-compiler/lib/lib.es6.d.ts',
+            paths.libs.base + '/@reactivex/rxjs/dist/es6/Rx.d.ts',
+            
             'app/**/*.ts'
         ])
         .pipe(sourcemaps.init())

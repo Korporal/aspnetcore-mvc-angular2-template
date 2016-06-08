@@ -5,20 +5,18 @@ import { DataService } from '../services/data-service';
     selector: 'todo',
     template: `
         <div>
-            <div *ngFor='let item of _data; #i = index'>
+            <div *ngFor='let item of _data; let i = index'>
                 {{item}} <span>({{i}})</span>
             </div>
         <div>
+        <div>
+        </div>
     `,
     providers:[DataService]
-
 })
 
-
 export class TodoComponent implements OnInit {
-
     private _data: Array<string>;
-
     constructor(private service: DataService) {
 
     }
@@ -27,7 +25,6 @@ export class TodoComponent implements OnInit {
         this.service
             .getAll('api\\todo')
             .subscribe(x => { this._data = x; console.log(this._data); });
-
     }
 
 }
