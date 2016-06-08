@@ -1,2 +1,2 @@
 # aspnetcore-mvc-angular2-template
-a template for aspnet core mvs and angular 2 applications
+A template for aspnet core mvc and angular 2 applications
