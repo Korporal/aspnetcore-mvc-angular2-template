@@ -1,12 +1,10 @@
-﻿
-import { Component, OnInit } from 'angular2/core';
+﻿import { Component, OnInit } from 'angular2/core';
 import { RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS } from 'angular2/router';
 import { COMMON_DIRECTIVES } from 'angular2/common';
 
 import {ComponentOne} from './components/component-one';
 import {ComponentTwo} from './components/component-two';
 import {TodoComponent} from './components/todo-component';
-
 
 @Component({
     selector: 'main-component',
@@ -36,14 +34,10 @@ import {TodoComponent} from './components/todo-component';
 
 
 export class MainComponent implements OnInit {
-    title: string = '! my new component !';
-
-
+    title: string = '';
 
     ngOnInit() {
         console.log('@ main component oninit');
     }
-
-
 }
 

@@ -7,11 +7,8 @@
     `
 })
 
-
-
 export class ComponentOne {
     data: string = 'this is component one!';
-
 }
 
 

@@ -6,22 +6,23 @@ import 'rxjs/add/operator/map';
     selector: 'todo',
     template: `
         <div class='col-sm-12'>
-            <div class='col-sm-12'>Add item:</div>  
-            <div class='col-sm-6'><input type='text' [(ngModel)]='_newTodoItem' class='form-control' (keyup)="onEnter($event)"></div>  
-        </div>
-        <div>
-            <div *ngFor='let item of _data; let i = index'>
+            <div class='row'>
+                <div class='col-sm-12'>Add item:</div>  
+                <div class='col-sm-6'><input type='text' [(ngModel)]='_newTodoItem' class='form-control' (keyup)="onEnter($event)"></div>  
+            </div>
+            <div class='row'>
+                <div *ngFor='let item of _data; let i = index'>
                 
-                <div>  
-                    <span (click)='onDeactivate($event, item, i)'>  <i 
-                                                                    [class.disabled]='!item.isActive' 
-                                                                    [class.icon-active]='item.isActive' 
-                                                                    class="fa fa-check" aria-hidden="true"></i> </span>
+                    <div>  
+                        <span (click)='onDeatcivate($event, item, i)'>  <i 
+                                                                        [ngClass]='{"icon-active":item.isActive, disabled:!item.isActive}'
+                                                                        class="fa fa-check" aria-hidden="true"></i> </span>
 
-                    <span [class.disabled]='!item.isActive'>{{item.name}}</span>
-                    <span (click)='onDelete($event,i)' ><i class="fa fa-times-circle color-delete" aria-hidden="true"></i></span>                
-                </div>
+                        <span [class.disabled]='!item.isActive'>{{item.name}}</span>
+                        <span (click)='onDelete($event,i)' ><i class="fa fa-times-circle color-delete" aria-hidden="true"></i></span>                
+                    </div>
                 
+                </div>
             </div>
         </div>
         

@@ -25,11 +25,6 @@
         <!-- 2. Configure SystemJS -->
         <script>
             System.config({
-
-                //paths: {
-                //    'rxjs/operator/*': 'libs/rxjs/operator/*.js',
-                //    'rxjs/*': 'libs/rxjs/*.js'
-                //},
                 packages: {
                     app: {
                         format:'register',
@@ -40,31 +35,8 @@
                         'angular2': 'libs/angular'
                     }
                 }
-
-
             })
-            /*
-            System.config({
-                "baseURL": "/",
-                "map": {
-                    'angular2':'/libs/angular2.dev'
-
-                },
-                packages: {
-                    scripts: {    // <--- right there
-                        format: 'cjs',
-                        defaultExtension: 'js'
-                    }
-                },
-                "paths": {
-                    'angular':'/libs'
-
-                }
-
-            });
-            */
             System.import('./app/boot').then(null, console.error.bind(console));
-            
         </script>
 </head>
 
