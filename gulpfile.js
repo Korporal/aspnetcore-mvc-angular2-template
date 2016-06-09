@@ -22,7 +22,8 @@ const paths = {
 
         app: base.source + '/app/**/*.ts',
         html: [base.source + '/**/*.html', '!' + base.source + '/index.html'],
-        index: base.source+'/index.html'
+        index: base.source + '/index.html',
+        css: base.source + '/content'
     },
     build: {
         root: base.build,
@@ -65,7 +66,8 @@ gulp.task('setup-css', function () {
             paths.source.bower + '/bootstrap/dist/css/**/*.css',
             paths.source.bower + '/bootstrap/dist/css/**/*.map',
             paths.source.bower + '/font-awesome/css/**/*.css',
-            paths.source.bower + '/font-awesome/css/**/*.map'
+            paths.source.bower + '/font-awesome/css/**/*.map',
+            paths.source.content + '/**/*.css'
         ])
         .pipe(gulp.dest(paths.build.css));
 
